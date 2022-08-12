@@ -25,16 +25,12 @@ app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:kagami123@localhost:5432/Fyyur'
 migrate = Migrate(app, db)
 
-
-# TODO: connect to a local postgresql database
 
 #----------------------------------------------------------------------------#
 # Models.
 #----------------------------------------------------------------------------#
-
 class Venue(db.Model):
     __tablename__ = 'venue'
 
@@ -79,6 +75,7 @@ class Show(db.Model):
   venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'), nullable=False)
   artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'), nullable=False)
   start_time = db.Column(db.DateTime, nullable=False)
+
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
